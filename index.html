@@ -14,17 +14,30 @@
   <button onclick="count('ตัดสระเซ็ท')">ตัดสระเซ็ท (200)</button>
 
   <script>
-    const WEBHOOK_URL = "https://auuupasu.app.n8n.cloud/webhook-test/69c90b65-7ade-43ae-8f1b-877f64a693ea";
+  const WEBHOOK_URL = "https://auuupasu.app.n8n.cloud/webhook-test/69c90b65-7ade-43ae-8f1b-877f64a693ea";
 
-    async function count(service) {
-      const response = await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ service: service, count: 1 })
-      });
+  async function count(service) {
+  const today = new Date().toISOString().split('T')[0]; // yyyy-mm-dd
+  const payload = {
+    service: service,
+    count: 1,
+    date: today
+  };
+
+  try {
+    const response = await fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
     const result = await response.json();
-    alert(result.message);
-    }
-  </script>
+    alert(result.message || "นับลูกค้าเรียบร้อยแล้ว!");
+  } catch (err) {
+    console.error(err);
+    alert("เกิดข้อผิดพลาด: " + err.message);
+  }
+}
+</script>
+
 </body>
 </html>
