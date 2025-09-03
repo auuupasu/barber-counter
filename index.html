@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>นับลูกค้า</title>
+</head>
+<body>
+  <h1>นับบริการวันนี้</h1>
+  <button onclick="count('วินเทจ')">วินเทจ (150)</button>
+  <button onclick="count('ผู้ใหญ่')">ผู้ใหญ่ (120)</button>
+  <button onclick="count('เด็กโต')">เด็กโต (100)</button>
+  <button onclick="count('เด็กเล็ก')">เด็กเล็ก (80)</button>
+  <button onclick="count('ตัดสระเซ็ท')">ตัดสระเซ็ท (200)</button>
+
+  <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw2Pb7jQpN0-81L4aGIz3ZP1uVdep3V6iUA54iZ8_McmWMHwHGFHei6ZixpxhHpe3yD/exec";
+
+    async function count(service) {
+      const response = await fetch(WEB_APP_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ service })
+      });
+      const result = await response.json();
+      alert(result.message);
+    }
+  </script>
+</body>
+</html>
