@@ -13,16 +13,16 @@
   <button onclick="count('ตัดสระเซ็ท')">ตัดสระเซ็ท (200)</button>
 
   <script>
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw2Pb7jQpN0-81L4aGIz3ZP1uVdep3V6iUA54iZ8_McmWMHwHGFHei6ZixpxhHpe3yD/exec";
+    const WEBHOOK_URL = "https://auuupasu.app.n8n.cloud/webhook-test/69c90b65-7ade-43ae-8f1b-877f64a693ea";
 
     async function count(service) {
-      const response = await fetch(WEB_APP_URL, {
+      const response = await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ service })
       });
-      const result = await response.json();
-      alert(result.message);
+    const result = await response.json();
+    alert(result.message);
     }
   </script>
 </body>
